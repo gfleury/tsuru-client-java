@@ -19,14 +19,14 @@ import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * InlineResponse200
+ * ApiKey
  */
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2017-12-29T19:35:39.999Z")
-public class InlineResponse200 {
+public class ApiKey {
   @SerializedName("APIKey")
   private String apIKey = null;
 
-  public InlineResponse200 apIKey(String apIKey) {
+  public ApiKey apIKey(String apIKey) {
     this.apIKey = apIKey;
     return this;
   }
@@ -53,8 +53,8 @@ public class InlineResponse200 {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse200 inlineResponse200 = (InlineResponse200) o;
-    return Objects.equals(this.apIKey, inlineResponse200.apIKey);
+    ApiKey apiKey = (ApiKey) o;
+    return Objects.equals(this.apIKey, apiKey.apIKey);
   }
 
   @Override
@@ -66,7 +66,7 @@ public class InlineResponse200 {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse200 {\n");
+    sb.append("class ApiKey {\n");
     
     sb.append("    apIKey: ").append(toIndentedString(apIKey)).append("\n");
     sb.append("}");

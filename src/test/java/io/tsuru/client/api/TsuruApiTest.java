@@ -14,12 +14,11 @@
 package io.tsuru.client.api;
 
 import io.tsuru.client.ApiException;
+import io.tsuru.client.model.ApiKey;
 import io.tsuru.client.model.Application;
 import java.io.File;
-import io.tsuru.client.model.InlineResponse200;
-import io.tsuru.client.model.InlineResponseDefault;
+
 import io.tsuru.client.model.User;
-import io.tsuru.client.api.TsuruApi;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -406,7 +405,7 @@ public class TsuruApiTest {
     @Test
     public void getApiKeyTest() throws ApiException {
         String user = null;
-        InlineResponse200 response = api.getApiKey(user);
+        ApiKey response = api.getApiKey(user);
 
         // TODO: test validations
     }
@@ -422,7 +421,7 @@ public class TsuruApiTest {
     @Test
     public void regenerateApiKeyTest() throws ApiException {
         String user = null;
-        InlineResponse200 response = api.regenerateApiKey(user);
+        ApiKey response = api.regenerateApiKey(user);
 
         // TODO: test validations
     }

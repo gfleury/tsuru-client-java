@@ -27,11 +27,10 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import io.tsuru.client.model.Application;
+import io.tsuru.client.model.*;
+
 import java.io.File;
-import io.tsuru.client.model.InlineResponse200;
-import io.tsuru.client.model.InlineResponseDefault;
-import io.tsuru.client.model.User;
+import io.tsuru.client.model.ApiKey;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -2613,7 +2612,7 @@ public class TsuruApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/apps/{name}/env"
+        String localVarPath = "/1.0/apps/{name}/env"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2771,7 +2770,7 @@ public class TsuruApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/apps/{name}/env"
+        String localVarPath = "/1.0/apps/{name}/env"
             .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -2972,11 +2971,11 @@ public class TsuruApi {
      * Get ApiKey for user.
      * The backend endpoint the backend. 
      * @param user  (optional)
-     * @return InlineResponse200
+     * @return ApiKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse200 getApiKey(String user) throws ApiException {
-        ApiResponse<InlineResponse200> resp = getApiKeyWithHttpInfo(user);
+    public ApiKey getApiKey(String user) throws ApiException {
+        ApiResponse<ApiKey> resp = getApiKeyWithHttpInfo(user);
         return resp.getData();
     }
 
@@ -2984,12 +2983,12 @@ public class TsuruApi {
      * Get ApiKey for user.
      * The backend endpoint the backend. 
      * @param user  (optional)
-     * @return ApiResponse&lt;InlineResponse200&gt;
+     * @return ApiResponse&lt;ApiKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse200> getApiKeyWithHttpInfo(String user) throws ApiException {
+    public ApiResponse<ApiKey> getApiKeyWithHttpInfo(String user) throws ApiException {
         com.squareup.okhttp.Call call = getApiKeyValidateBeforeCall(user, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<ApiKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -3001,7 +3000,7 @@ public class TsuruApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getApiKeyAsync(String user, final ApiCallback<InlineResponse200> callback) throws ApiException {
+    public com.squareup.okhttp.Call getApiKeyAsync(String user, final ApiCallback<ApiKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3023,7 +3022,144 @@ public class TsuruApi {
         }
 
         com.squareup.okhttp.Call call = getApiKeyValidateBeforeCall(user, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<ApiKey>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for login
+     * @param email  (required)
+     * @param password  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call loginCall(String email, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/1.0/users/{email}/tokens"
+            .replaceAll("\\{" + "email" + "\\}", apiClient.escapeString(email.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (password != null)
+        localVarFormParams.put("password", password);
+
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/x-www-form-urlencoded"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call loginValidateBeforeCall(String email, String password, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'email' is set
+        if (email == null) {
+            throw new ApiException("Missing the required parameter 'email' when calling login(Async)");
+        }
+        
+        // verify the required parameter 'password' is set
+        if (password == null) {
+            throw new ApiException("Missing the required parameter 'password' when calling login(Async)");
+        }
+        
+        
+        com.squareup.okhttp.Call call = loginCall(email, password, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Login on tsuru generate new Token
+     * The backend endpoint the backend. 
+     * @param email  (required)
+     * @param password  (required)
+     * @return LoginToken
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public LoginToken login(String email, String password) throws ApiException {
+        ApiResponse<LoginToken> resp = loginWithHttpInfo(email, password);
+        return resp.getData();
+    }
+
+    /**
+     * Login on tsuru generate new Token
+     * The backend endpoint the backend. 
+     * @param email  (required)
+     * @param password  (required)
+     * @return ApiResponse&lt;LoginToken&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<LoginToken> loginWithHttpInfo(String email, String password) throws ApiException {
+        com.squareup.okhttp.Call call = loginValidateBeforeCall(email, password, null, null);
+        Type localVarReturnType = new TypeToken<LoginToken>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Login on tsuru generate new Token (asynchronously)
+     * The backend endpoint the backend. 
+     * @param email  (required)
+     * @param password  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call loginAsync(String email, String password, final ApiCallback<LoginToken> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = loginValidateBeforeCall(email, password, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<LoginToken>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3094,11 +3230,11 @@ public class TsuruApi {
      * Regenerate ApiKey for user.
      * The backend endpoint the backend. 
      * @param user  (optional)
-     * @return InlineResponse200
+     * @return ApiKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public InlineResponse200 regenerateApiKey(String user) throws ApiException {
-        ApiResponse<InlineResponse200> resp = regenerateApiKeyWithHttpInfo(user);
+    public ApiKey regenerateApiKey(String user) throws ApiException {
+        ApiResponse<ApiKey> resp = regenerateApiKeyWithHttpInfo(user);
         return resp.getData();
     }
 
@@ -3106,12 +3242,12 @@ public class TsuruApi {
      * Regenerate ApiKey for user.
      * The backend endpoint the backend. 
      * @param user  (optional)
-     * @return ApiResponse&lt;InlineResponse200&gt;
+     * @return ApiResponse&lt;ApiKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<InlineResponse200> regenerateApiKeyWithHttpInfo(String user) throws ApiException {
+    public ApiResponse<ApiKey> regenerateApiKeyWithHttpInfo(String user) throws ApiException {
         com.squareup.okhttp.Call call = regenerateApiKeyValidateBeforeCall(user, null, null);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<ApiKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -3123,7 +3259,7 @@ public class TsuruApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call regenerateApiKeyAsync(String user, final ApiCallback<InlineResponse200> callback) throws ApiException {
+    public com.squareup.okhttp.Call regenerateApiKeyAsync(String user, final ApiCallback<ApiKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3145,7 +3281,7 @@ public class TsuruApi {
         }
 
         com.squareup.okhttp.Call call = regenerateApiKeyValidateBeforeCall(user, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<InlineResponse200>(){}.getType();
+        Type localVarReturnType = new TypeToken<ApiKey>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
