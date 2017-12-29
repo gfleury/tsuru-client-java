@@ -68,17 +68,19 @@ import java.util.*;
 
 public class TsuruApiExample {
 
-    public static void main(String[] args) {
-        
+    public static void main(String [] args) throws ApiException {
+ 
+        System.out.println("Testing Tsuru Java Client");
+
         TsuruApi apiInstance = new TsuruApi();
-        String name = "name_example"; // String | Application name.
-        String tag = "tag_example"; // String | 
-        File file = new File("/path/to/file.txt"); // File | 
+        apiInstance.getApiClient().setBasePath("http://tsuru.paas.example.com");
+        LoginToken token = apiInstance.login("user@example.com", "password");
+
         try {
-            String result = apiInstance.appBuild(name, tag, file);
+            List<Application> result = apiInstance.appList();
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling TsuruApi#appBuild");
+            System.err.println("Exception when calling appList");
             e.printStackTrace();
         }
     }

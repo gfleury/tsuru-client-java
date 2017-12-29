@@ -853,6 +853,9 @@ public class ApiClient {
         if (contentType == null) {
             // ensuring a default content type
             contentType = "application/json";
+        } else if (contentType.contains("text/plain") && Pattern.matches("/1.0/users/.*/tokens", response.request().url().getPath())) {
+            // Tsuru login login issue, always return as text/plain
+            contentType = "application/json";
         }
         if (isJsonMime(contentType)) {
             return json.deserialize(respBody, returnType);

@@ -3111,7 +3111,11 @@ public class TsuruApi {
      */
     public LoginToken login(String email, String password) throws ApiException {
         ApiResponse<LoginToken> resp = loginWithHttpInfo(email, password);
-        return resp.getData();
+
+        LoginToken token = resp.getData();
+        this.getApiClient().addDefaultHeader("Authorization", "bearer " + token.getToken());
+
+        return token;
     }
 
     /**
