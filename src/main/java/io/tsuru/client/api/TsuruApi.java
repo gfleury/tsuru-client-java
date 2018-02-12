@@ -25,7 +25,7 @@ import io.tsuru.client.ProgressResponseBody;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
-
+import java.io.Serializable;
 
 import io.tsuru.client.model.*;
 
@@ -38,7 +38,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TsuruApi {
+public class TsuruApi implements Serializable {
     private ApiClient apiClient;
 
     public TsuruApi() {

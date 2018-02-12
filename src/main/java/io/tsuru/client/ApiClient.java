@@ -27,6 +27,7 @@ import com.squareup.okhttp.internal.http.HttpMethod;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor;
 import com.squareup.okhttp.logging.HttpLoggingInterceptor.Level;
 
+import java.io.*;
 import java.lang.reflect.Type;
 
 import java.util.Collection;
@@ -44,11 +45,6 @@ import java.util.regex.Pattern;
 
 import java.net.URLEncoder;
 import java.net.URLConnection;
-
-import java.io.File;
-import java.io.InputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
@@ -78,7 +74,7 @@ import io.tsuru.client.auth.HttpBasicAuth;
 import io.tsuru.client.auth.ApiKeyAuth;
 import io.tsuru.client.auth.OAuth;
 
-public class ApiClient {
+public class ApiClient implements Serializable {
     public static final double JAVA_VERSION;
     public static final boolean IS_ANDROID;
     public static final int ANDROID_SDK_VERSION;
@@ -128,10 +124,10 @@ public class ApiClient {
     private boolean verifyingSsl;
     private KeyManager[] keyManagers;
 
-    private OkHttpClient httpClient;
-    private JSON json;
+    private transient OkHttpClient httpClient;
+    private transient JSON json;
 
-    private HttpLoggingInterceptor loggingInterceptor;
+    private transient HttpLoggingInterceptor loggingInterceptor;
 
     /*
      * Constructor for ApiClient
