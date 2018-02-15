@@ -444,9 +444,9 @@ public class TsuruApi implements Serializable {
         }
         
         // verify the required parameter 'image' is set
-        if (image == null) {
-            throw new ApiException("Missing the required parameter 'image' when calling appDeploy(Async)");
-        }
+        // if (image == null) {
+        //    throw new ApiException("Missing the required parameter 'image' when calling appDeploy(Async)");
+        //}
         
         
         com.squareup.okhttp.Call call = appDeployCall(name, file, image, progressListener, progressRequestListener);
