@@ -33,10 +33,8 @@ import java.io.File;
 import io.tsuru.client.model.ApiKey;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.net.URLEncoder;
+import java.util.*;
 
 public class TsuruApi implements Serializable {
     private ApiClient apiClient;
@@ -221,7 +219,7 @@ public class TsuruApi implements Serializable {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call appCreateCall(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, List<String> routeropts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call appCreateCall(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, Map<String,String> routeropts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -248,9 +246,11 @@ public class TsuruApi implements Serializable {
         localVarFormParams.put("tag", tag);
         if (router != null)
         localVarFormParams.put("router", router);
-        if (routeropts != null)
-        localVarFormParams.put("routeropts", routeropts);
-
+        if (routeropts != null) {
+            for (Map.Entry<String,String> e: routeropts.entrySet()) {
+                localVarFormParams.put("routeropts." + e.getKey(), e.getValue());
+            }
+        }
         final String[] localVarAccepts = {
             
         };
@@ -280,7 +280,7 @@ public class TsuruApi implements Serializable {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call appCreateValidateBeforeCall(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, List<String> routeropts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call appCreateValidateBeforeCall(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, Map<String,String> routeropts, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
         com.squareup.okhttp.Call call = appCreateCall(name, platform, plan, teamOwner, pool, description, tag, router, routeropts, progressListener, progressRequestListener);
@@ -307,7 +307,7 @@ public class TsuruApi implements Serializable {
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String appCreate(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, List<String> routeropts) throws ApiException {
+    public String appCreate(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, Map<String,String> routeropts) throws ApiException {
         ApiResponse<String> resp = appCreateWithHttpInfo(name, platform, plan, teamOwner, pool, description, tag, router, routeropts);
         return resp.getData();
     }
@@ -327,7 +327,7 @@ public class TsuruApi implements Serializable {
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> appCreateWithHttpInfo(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, List<String> routeropts) throws ApiException {
+    public ApiResponse<String> appCreateWithHttpInfo(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, Map<String,String> routeropts) throws ApiException {
         com.squareup.okhttp.Call call = appCreateValidateBeforeCall(name, platform, plan, teamOwner, pool, description, tag, router, routeropts, null, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -349,7 +349,7 @@ public class TsuruApi implements Serializable {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call appCreateAsync(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, List<String> routeropts, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call appCreateAsync(String name, String platform, String plan, String teamOwner, String pool, String description, List<String> tag, String router, HashMap<String,String> routeropts, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2597,6 +2597,138 @@ public class TsuruApi implements Serializable {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+
+    /**
+     * Build call for envGet
+     * @param name  (required)
+     * @param envs  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call envGetCall(String name, String envs, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/1.0/apps/{name}/env"
+                .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (envs != null)
+            localVarPath = localVarPath + "?" + envs;
+
+        final String[] localVarAccepts = {
+
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+        };
+
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                            .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                            .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call envGetValidateBeforeCall(String name, String envs, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling envGet(Async)");
+        }
+
+
+        com.squareup.okhttp.Call call = envGetCall(name, envs, progressListener, progressRequestListener);
+        return call;
+
+
+    }
+
+    /**
+     * Set env on application
+     * The backend endpoint the backend.
+     * @param name  (required)
+     * @param envs  (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public EnvVars[] envGet(String name, String envs) throws ApiException {
+        ApiResponse<EnvVars[]> resp = envGetWithHttpInfo(name, envs);
+        return resp.getData();
+    }
+
+    /**
+     * Set env on application
+     * The backend endpoint the backend.
+     * @param name  (required)
+     * @param envs  (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<EnvVars[]> envGetWithHttpInfo(String name, String envs) throws ApiException {
+        com.squareup.okhttp.Call call = envGetValidateBeforeCall(name, envs, null, null);
+        Type localVarReturnType = new TypeToken<EnvVars[]>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Set env on application (asynchronously)
+     * The backend endpoint the backend.
+     * @param name  (required)
+     * @param envs  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call envGetAsync(String name, String envs, final ApiCallback<EnvVars[]> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = envGetValidateBeforeCall(name, envs, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<EnvVars[]>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+
     /**
      * Build call for envSet
      * @param name  (required)
@@ -2608,7 +2740,7 @@ public class TsuruApi implements Serializable {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call envSetCall(String name, String envs, Boolean noRestart, Boolean _private, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call envSetCall(String name, List<EnvVars> envs, Boolean noRestart, Boolean _private, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -2620,15 +2752,19 @@ public class TsuruApi implements Serializable {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (envs != null)
-        localVarFormParams.put("Envs", envs);
+        if (envs != null) {
+            for (int i=0; i < envs.size(); i++) {
+                localVarFormParams.put("Envs." + i +".Name", envs.get(i).getName());
+                localVarFormParams.put("Envs." + i +".Value", envs.get(i).getValue());
+            }
+        }
         if (noRestart != null)
         localVarFormParams.put("NoRestart", noRestart);
         if (_private != null)
         localVarFormParams.put("Private", _private);
 
         final String[] localVarAccepts = {
-            
+
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
@@ -2656,7 +2792,7 @@ public class TsuruApi implements Serializable {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call envSetValidateBeforeCall(String name, String envs, Boolean noRestart, Boolean _private, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call envSetValidateBeforeCall(String name, List<EnvVars> envs, Boolean noRestart, Boolean _private, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'name' is set
         if (name == null) {
@@ -2667,25 +2803,25 @@ public class TsuruApi implements Serializable {
         if (envs == null) {
             throw new ApiException("Missing the required parameter 'envs' when calling envSet(Async)");
         }
-        
+
         // verify the required parameter 'noRestart' is set
         if (noRestart == null) {
             throw new ApiException("Missing the required parameter 'noRestart' when calling envSet(Async)");
         }
-        
+
         // verify the required parameter '_private' is set
         if (_private == null) {
             throw new ApiException("Missing the required parameter '_private' when calling envSet(Async)");
         }
-        
+
         
         com.squareup.okhttp.Call call = envSetCall(name, envs, noRestart, _private, progressListener, progressRequestListener);
         return call;
 
-        
-        
-        
-        
+
+
+
+
     }
 
     /**
@@ -2698,7 +2834,7 @@ public class TsuruApi implements Serializable {
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String envSet(String name, String envs, Boolean noRestart, Boolean _private) throws ApiException {
+    public String envSet(String name, List<EnvVars> envs, Boolean noRestart, Boolean _private) throws ApiException {
         ApiResponse<String> resp = envSetWithHttpInfo(name, envs, noRestart, _private);
         return resp.getData();
     }
@@ -2713,7 +2849,7 @@ public class TsuruApi implements Serializable {
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> envSetWithHttpInfo(String name, String envs, Boolean noRestart, Boolean _private) throws ApiException {
+    public ApiResponse<String> envSetWithHttpInfo(String name, List<EnvVars> envs, Boolean noRestart, Boolean _private) throws ApiException {
         com.squareup.okhttp.Call call = envSetValidateBeforeCall(name, envs, noRestart, _private, null, null);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -2730,7 +2866,7 @@ public class TsuruApi implements Serializable {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call envSetAsync(String name, String envs, Boolean noRestart, Boolean _private, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call envSetAsync(String name, List<EnvVars> envs, Boolean noRestart, Boolean _private, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

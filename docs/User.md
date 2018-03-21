@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** |  |  [optional]
-**roles** | **String** |  |  [optional]
-**permission** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
+**value** | **String** |  |  [optional]
+**isPublic** | **String** |  |  [optional]
 
 
 

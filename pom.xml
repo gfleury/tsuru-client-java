@@ -9,9 +9,9 @@
   <url>https://github.com/gfleury/tsuru-client-java</url>
   <description>Tsuru Java Client</description>
   <scm>
-    <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-    <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
+    <connection>scm:git:https://github.com/gfleury/jenkins-tsuru-client-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/gfleury/jenkins-tsuru-client-plugin.git</developerConnection>
+    <url>https://github.com/gfleury/jenkins-tsuru-client-plugin</url>
   </scm>
   <prerequisites>
     <maven>2.2.0</maven>

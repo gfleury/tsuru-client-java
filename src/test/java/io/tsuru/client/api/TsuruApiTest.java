@@ -18,11 +18,14 @@ import io.tsuru.client.model.ApiKey;
 import io.tsuru.client.model.Application;
 import java.io.File;
 
+import io.tsuru.client.model.EnvVars;
 import io.tsuru.client.model.User;
 import org.junit.Test;
 import org.junit.Ignore;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * API tests for TsuruApi
@@ -69,7 +72,8 @@ public class TsuruApiTest {
         String description = null;
         List<String> tag = null;
         String router = null;
-        List<String> routeropts = null;
+        HashMap<String,String> routeropts;
+        routeropts = null;
         String response = api.appCreate(name, platform, plan, teamOwner, pool, description, tag, router, routeropts);
 
         // TODO: test validations
@@ -368,7 +372,7 @@ public class TsuruApiTest {
     @Test
     public void envSetTest() throws ApiException {
         String name = null;
-        String envs = null;
+        List<EnvVars> envs = null;
         Boolean noRestart = null;
         Boolean _private = null;
         String response = api.envSet(name, envs, noRestart, _private);

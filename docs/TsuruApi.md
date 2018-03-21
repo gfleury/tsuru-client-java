@@ -10,13 +10,13 @@ Method | HTTP request | Description
 [**appDeployRebuild**](TsuruApi.md#appDeployRebuild) | **POST** /1.3/apps/{name}/deploy/rebuild | Rebuild deploy application deployment
 [**appDeployRollback**](TsuruApi.md#appDeployRollback) | **POST** /1.0/apps/{name}/deploy/rollback | Rollback application deployment
 [**appDeployRollbackUpdate**](TsuruApi.md#appDeployRollbackUpdate) | **PUT** /1.0/apps/{name}/deploy/rollback/update | Rollback application deployment
-[**appGrant**](TsuruApi.md#appGrant) | **PUT** /1.0/apps/{name}/teams/{team} | Grant permission application
+[**appGrant**](TsuruApi.md#appGrant) | **PUT** /1.0/apps/{name}/teams/{team} | Grant isPublic application
 [**appInfo**](TsuruApi.md#appInfo) | **GET** /1.0/apps/{name} | Application information
 [**appList**](TsuruApi.md#appList) | **GET** /1.0/apps | Get Applications
 [**appLog**](TsuruApi.md#appLog) | **GET** /1.0/apps/{name}/log | Get application logs.
 [**appRemove**](TsuruApi.md#appRemove) | **DELETE** /1.0/apps/{name} | Delete application
 [**appRestart**](TsuruApi.md#appRestart) | **POST** /1.0/apps/{name}/restart | Restart application
-[**appRevoke**](TsuruApi.md#appRevoke) | **DELETE** /1.0/apps/{name}/teams/{team} | Revoke permission on application
+[**appRevoke**](TsuruApi.md#appRevoke) | **DELETE** /1.0/apps/{name}/teams/{team} | Revoke isPublic on application
 [**appRun**](TsuruApi.md#appRun) | **POST** /1.0/apps/{name}/run | Run command inside app container
 [**appStart**](TsuruApi.md#appStart) | **POST** /1.0/apps/{name}/start | Start application
 [**appStop**](TsuruApi.md#appStop) | **POST** /1.0/apps/{name}/stop | Stop application
@@ -341,7 +341,7 @@ No authorization required
 # **appGrant**
 > String appGrant(name, team)
 
-Grant permission application
+Grant isPublic application
 
 The backend endpoint the backend. 
 
@@ -613,7 +613,7 @@ No authorization required
 # **appRevoke**
 > String appRevoke(name, team)
 
-Revoke permission on application
+Revoke isPublic on application
 
 The backend endpoint the backend. 
 

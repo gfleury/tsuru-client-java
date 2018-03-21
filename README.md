@@ -100,13 +100,13 @@ Class | Method | HTTP request | Description
 *TsuruApi* | [**appDeployRebuild**](docs/TsuruApi.md#appDeployRebuild) | **POST** /1.3/apps/{name}/deploy/rebuild | Rebuild deploy application deployment
 *TsuruApi* | [**appDeployRollback**](docs/TsuruApi.md#appDeployRollback) | **POST** /1.0/apps/{name}/deploy/rollback | Rollback application deployment
 *TsuruApi* | [**appDeployRollbackUpdate**](docs/TsuruApi.md#appDeployRollbackUpdate) | **PUT** /1.0/apps/{name}/deploy/rollback/update | Rollback application deployment
-*TsuruApi* | [**appGrant**](docs/TsuruApi.md#appGrant) | **PUT** /1.0/apps/{name}/teams/{team} | Grant permission application
+*TsuruApi* | [**appGrant**](docs/TsuruApi.md#appGrant) | **PUT** /1.0/apps/{name}/teams/{team} | Grant isPublic application
 *TsuruApi* | [**appInfo**](docs/TsuruApi.md#appInfo) | **GET** /1.0/apps/{name} | Application information
 *TsuruApi* | [**appList**](docs/TsuruApi.md#appList) | **GET** /1.0/apps | Get Applications
 *TsuruApi* | [**appLog**](docs/TsuruApi.md#appLog) | **GET** /1.0/apps/{name}/log | Get application logs.
 *TsuruApi* | [**appRemove**](docs/TsuruApi.md#appRemove) | **DELETE** /1.0/apps/{name} | Delete application
 *TsuruApi* | [**appRestart**](docs/TsuruApi.md#appRestart) | **POST** /1.0/apps/{name}/restart | Restart application
-*TsuruApi* | [**appRevoke**](docs/TsuruApi.md#appRevoke) | **DELETE** /1.0/apps/{name}/teams/{team} | Revoke permission on application
+*TsuruApi* | [**appRevoke**](docs/TsuruApi.md#appRevoke) | **DELETE** /1.0/apps/{name}/teams/{team} | Revoke isPublic on application
 *TsuruApi* | [**appRun**](docs/TsuruApi.md#appRun) | **POST** /1.0/apps/{name}/run | Run command inside app container
 *TsuruApi* | [**appStart**](docs/TsuruApi.md#appStart) | **POST** /1.0/apps/{name}/start | Start application
 *TsuruApi* | [**appStop**](docs/TsuruApi.md#appStop) | **POST** /1.0/apps/{name}/stop | Stop application
