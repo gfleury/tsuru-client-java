@@ -17,7 +17,7 @@ public class Main {
 
         TsuruApi apiInstance = new TsuruApi();
         apiInstance.getApiClient().setBasePath("http://localhost:8080");
-        LoginToken token = apiInstance.login("gfleury@gmail.com", "password");
+        LoginToken token = apiInstance.login("example@domain.com", "password");
 
         try {
             List<EnvVars> routerOpts = new LinkedList<>();
