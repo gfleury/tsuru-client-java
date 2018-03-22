@@ -618,6 +618,27 @@ public class ApiClient implements Serializable {
      *
      * @return Timeout in milliseconds
      */
+    public int getReadTimeout() {
+        return httpClient.getReadTimeout();
+    }
+
+    /**
+     * Sets the read timeout (in milliseconds).
+     * A value of 0 means no timeout, otherwise values must be between 1 and
+     *
+     * @param readTimeout connection timeout in milliseconds
+     * @return Api client
+     */
+    public ApiClient setReadTimeout(int readTimeout) {
+        httpClient.setReadTimeout(readTimeout, TimeUnit.MILLISECONDS);
+        return this;
+    }
+
+    /**
+     * Get connection timeout (in milliseconds).
+     *
+     * @return Timeout in milliseconds
+     */
     public int getConnectTimeout() {
         return httpClient.getConnectTimeout();
     }
