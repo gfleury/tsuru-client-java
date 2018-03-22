@@ -501,7 +501,7 @@ public class TsuruApi implements Serializable {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call appDeployAsync(String name, File file, String image, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call appDeployAsync(String name, File file, String image, String message, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -522,7 +522,7 @@ public class TsuruApi implements Serializable {
             };
         }
 
-        com.squareup.okhttp.Call call = appDeployValidateBeforeCall(name, file, image, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = appDeployValidateBeforeCall(name, file, image, message, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<String>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
