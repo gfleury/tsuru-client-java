@@ -92,7 +92,9 @@ public class TsuruApiTest {
         String name = null;
         File file = null;
         String image = null;
-        String response = api.appDeploy(name, file, image);
+        String message = null;
+        String commit = null;
+        String response = api.appDeploy(name, file, image, message, commit);
 
         // TODO: test validations
     }
