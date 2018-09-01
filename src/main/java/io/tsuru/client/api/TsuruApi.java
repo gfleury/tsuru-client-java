@@ -381,6 +381,7 @@ public class TsuruApi implements Serializable {
      * @param file  (required)
      * @param image  (required)
      * @param message  (required)
+     * @param commit  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -472,6 +473,7 @@ public class TsuruApi implements Serializable {
      * @param file  (required)
      * @param image  (required)
      * @param message  (required)
+     * @param commit  (required)
      * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -487,6 +489,7 @@ public class TsuruApi implements Serializable {
      * @param file  (required)
      * @param image  (required)
      * @param message  (required)
+     * @param commit  (required)
      * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -503,6 +506,7 @@ public class TsuruApi implements Serializable {
      * @param file  (required)
      * @param image  (required)
      * @param message  (required)
+     * @param commit  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -3573,7 +3577,9 @@ public class TsuruApi implements Serializable {
 
 
     /**
-     * Build call for appDeployList /1.0/deploys?app=commons&limit=10
+     * Build call for appDeployList
+     * @param appName String
+     * @param limit int
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -3635,6 +3641,8 @@ public class TsuruApi implements Serializable {
     /**
      * Get Application Deployments
      * The backend endpoint returns the address that the application is published.
+     * @param appName String
+     * @param limit int
      * @return List&lt;Deployments&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -3646,6 +3654,8 @@ public class TsuruApi implements Serializable {
     /**
      * Get Application Deployments
      * The backend endpoint returns the address that the application is published.
+     * @param appName String
+     * @param limit int
      * @return ApiResponse&lt;List&lt;Application&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -3658,6 +3668,8 @@ public class TsuruApi implements Serializable {
     /**
      * Get Application Deployments (asynchronously)
      * The backend endpoint returns the address that the application is published.
+     * @param appName String
+     * @param limit int
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
