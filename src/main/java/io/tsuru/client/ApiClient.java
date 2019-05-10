@@ -541,6 +541,15 @@ public class ApiClient implements Serializable {
     }
 
     /**
+     * Return default headers.
+     *
+     * @return ApiClient
+     */
+    public Map<String, String> getDefaultHeaders() {
+        return defaultHeaderMap;
+    }
+
+    /**
      * @see <a href="https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)">setLenient</a>
      *
      * @return True if lenientOnJson is enabled, false otherwise.
