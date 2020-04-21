@@ -400,9 +400,9 @@ public class TsuruApi implements Serializable {
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         if (file != null)
-        localVarFormParams.put("file", file);
+            localVarFormParams.put("file", file);
         if (image != null)
-        localVarFormParams.put("image", image);
+            localVarFormParams.put("image", image);
         if (message != null)
             localVarFormParams.put("message", message);
         if (commit != null)
@@ -447,14 +447,14 @@ public class TsuruApi implements Serializable {
         }
         
         // verify the required parameter 'file' is set
-        if (file == null) {
-            throw new ApiException("Missing the required parameter 'file' when calling appDeploy(Async)");
+        if (file == null && image == null) {
+            throw new ApiException("Missing the required parameter 'file' OR 'image' when calling appDeploy(Async)");
         }
         
         // verify the required parameter 'image' is set
-        // if (image == null) {
-        //    throw new ApiException("Missing the required parameter 'image' when calling appDeploy(Async)");
-        //}
+//        if (image == null) {
+//            throw new ApiException("Missing the required parameter 'image' when calling appDeploy(Async)");
+//        }
         
         
         com.squareup.okhttp.Call call = appDeployCall(name, file, image, message, commit, progressListener, progressRequestListener);
