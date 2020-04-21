@@ -399,16 +399,20 @@ public class TsuruApi implements Serializable {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-        if (file != null)
+        if (file != null) {
             localVarFormParams.put("file", file);
-        if (image != null)
+            localVarFormParams.put("origin", "git");
+        }
+        if (image != null) {
             localVarFormParams.put("image", image);
+            localVarFormParams.put("origin", "image");
+        }
         if (message != null)
             localVarFormParams.put("message", message);
         if (commit != null)
             localVarFormParams.put("commit", commit);
 
-        localVarFormParams.put("origin", "git");
+
 
         final String[] localVarAccepts = {
             
