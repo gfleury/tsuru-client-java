@@ -399,6 +399,11 @@ public class TsuruApi implements Serializable {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        String[] localVarContentTypes = {
+                "multipart/form-data"
+        };
+
         if (file != null) {
             localVarFormParams.put("file", file);
             localVarFormParams.put("origin", "git");
@@ -406,6 +411,7 @@ public class TsuruApi implements Serializable {
         if (image != null) {
             localVarFormParams.put("image", image);
             localVarFormParams.put("origin", "image");
+            localVarContentTypes = new String[]{"application/x-www-form-urlencoded"};
         }
         if (message != null)
             localVarFormParams.put("message", message);
@@ -420,9 +426,7 @@ public class TsuruApi implements Serializable {
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
-        final String[] localVarContentTypes = {
-            "multipart/form-data"
-        };
+
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
